@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fernando Pinto — Desarrollador Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:        #0a0a0f;
+            --bg2:       #111118;
+            --bg3:       #1a1a24;
+            --purple:    #7c3aed;
+            --purple2:   #a855f7;
+            --blue:      #3b82f6;
+            --cyan:      #06b6d4;
+            --text:      #e2e8f0;
+            --text-soft: #94a3b8;
+            --border:    rgba(124,58,237,0.2);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(10,10,15,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .nav-logo {
+            font-weight: 800; font-size: 1.2rem;
+            background: linear-gradient(135deg, var(--purple2), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a {
+            color: var(--text-soft); text-decoration: none; font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--purple2); }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(124,58,237,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-content { text-align: center; max-width: 700px; position: relative; }
+        .avatar {
+            width: 110px; height: 110px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; font-weight: 800; color: white;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0 40px rgba(124,58,237,0.4);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(124,58,237,0.15);
+            border: 1px solid var(--border);
+            color: var(--purple2);
+            padding: 0.35rem 1rem; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 500;
+            margin-bottom: 1.25rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800; line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--purple2), var(--blue), var(--cyan));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: var(--text-soft); font-size: 1.1rem;
+            max-width: 520px; margin: 0 auto 2rem;
+        }
+        .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple), var(--blue));
+            color: white; padding: 0.8rem 1.75rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+        .btn-outline {
+            border: 1px solid var(--border); color: var(--text-soft);
+            padding: 0.8rem 1.75rem; border-radius: 8px;
+            text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        }
+        .btn-outline:hover { border-color: var(--purple2); color: var(--purple2); transform: translateY(-2px); }
+
+        /* SECTIONS */
+        section { padding: 5rem 2rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        .section-title {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem;
+        }
+        .section-title span {
+            background: linear-gradient(135deg, var(--purple2), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .section-sub { color: var(--text-soft); margin-bottom: 3rem; }
+
+        /* SKILLS */
+        #skills { background: var(--bg2); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+        .skill-card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.25rem 1rem;
+            text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .skill-card:hover { border-color: var(--purple2); transform: translateY(-4px); }
+        .skill-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .skill-name { font-size: 0.9rem; font-weight: 600; }
+        .skill-level { font-size: 0.75rem; color: var(--text-soft); margin-top: 0.25rem; }
+
+        /* PROYECTOS */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 16px; padding: 1.75rem;
+            transition: border-color 0.2s, transform 0.2s;
+            position: relative; overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--purple), var(--blue));
+        }
+        .project-card:hover { border-color: var(--purple2); transform: translateY(-4px); }
+        .project-tag {
+            display: inline-block;
+            background: rgba(124,58,237,0.15); color: var(--purple2);
+            padding: 0.2rem 0.7rem; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem;
+        }
+        .project-tag.coming {
+            background: rgba(100,100,100,0.15); color: var(--text-soft);
+        }
+        .project-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .project-card p { color: var(--text-soft); font-size: 0.9rem; margin-bottom: 1.25rem; }
+        .project-techs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+        .tech-badge {
+            background: var(--bg3); border: 1px solid var(--border);
+            color: var(--text-soft); padding: 0.2rem 0.6rem;
+            border-radius: 6px; font-size: 0.75rem;
+        }
+        .project-links { display: flex; gap: 0.75rem; }
+        .project-link {
+            color: var(--purple2); text-decoration: none; font-size: 0.85rem;
+            font-weight: 500; display: flex; align-items: center; gap: 0.3rem;
+            transition: color 0.2s;
+        }
+        .project-link:hover { color: var(--blue); }
+
+        /* SOBRE MI */
+        #sobre-mi { background: var(--bg2); }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+        }
+        .about-text p { color: var(--text-soft); margin-bottom: 1rem; line-height: 1.8; }
+        .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .stat-card {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.25rem; text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--purple2), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .stat-label { color: var(--text-soft); font-size: 0.85rem; margin-top: 0.25rem; }
+
+        /* CONTACTO */
+        .contact-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 20px; padding: 3rem; text-align: center;
+            max-width: 600px; margin: 0 auto;
+        }
+        .contact-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .contact-card p { color: var(--text-soft); margin-bottom: 2rem; }
+        .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg2); border-top: 1px solid var(--border);
+            padding: 2rem; text-align: center; color: var(--text-soft); font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">FP.</div>
+    <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="avatar">FP</div>
+        <div class="hero-badge">👋 Disponible para proyectos</div>
+        <h1>Fernando <span>Pinto Cruz</span></h1>
+        <p>Desarrollador Web enfocado en construir soluciones reales — desde sistemas de gestión hasta ecommerce con integración de pagos.</p>
+        <div class="hero-btns">
+            <a href="#proyectos" class="btn-primary">Ver proyectos</a>
+            <a href="https://www.linkedin.com/in/ferpinto17/" target="_blank" class="btn-outline">LinkedIn →</a>
+        </div>
+    </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <h2 class="section-title">Mis <span>Skills</span></h2>
+        <p class="section-sub">Tecnologías y herramientas que manejo</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">🐘</div>
+                <div class="skill-name">PHP</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <div class="skill-name">Python</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎸</div>
+                <div class="skill-name">Django</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🗄️</div>
+                <div class="skill-name">MySQL</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">JavaScript</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚛️</div>
+                <div class="skill-name">React</div>
+                <div class="skill-level">Básico</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <div class="skill-name">n8n</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">⚙️</div>
+                <div class="skill-name">Power Automate</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <div class="skill-name">Power BI</div>
+                <div class="skill-level">Intermedio</div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <div class="skill-name">HTML/CSS</div>
+                <div class="skill-level">Avanzado</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+    <div class="container">
+        <h2 class="section-title">Mis <span>Proyectos</span></h2>
+        <p class="section-sub">Algunos de los sistemas que he desarrollado</p>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <span class="project-tag">✅ Completado</span>
+                <h3>Cuidarte Spa</h3>
+                <p>Ecommerce completo de aromaterapia con carrito, checkout, integración de pagos Flow, sistema de reservas, panel admin y blog.</p>
+                <div class="project-techs">
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">JavaScript</span>
+                    <span class="tech-badge">Flow API</span>
+                    <span class="tech-badge">MVC</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/xRazy1217/cuidarte-spa" target="_blank" class="project-link">⚠️ Privado</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag">✅ Completado</span>
+                <h3>FitSpace</h3>
+                <p>Plataforma de gestión para gimnasio con 3 vistas diferenciadas: administrador, profesor y alumno. Control de clases, asistencia y pagos.</p>
+                <div class="project-techs">
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">🔒 Próximamente en GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag">✅ Completado</span>
+                <h3>Reserva de Canchas</h3>
+                <p>Sistema de reserva de canchas de fútbol con calendario de disponibilidad, gestión de horarios y confirmación de reservas.</p>
+                <div class="project-techs">
+                    <span class="tech-badge">PHP</span>
+                    <span class="tech-badge">MySQL</span>
+                    <span class="tech-badge">JavaScript</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="project-link">🔒 Próximamente en GitHub</a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <span class="project-tag coming">🚧 En desarrollo</span>
+                <h3>Más proyectos</h3>
+                <p>Actualmente trabajando en nuevos proyectos. Pronto disponibles en GitHub.</p>
+                <div class="project-techs">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Django</span>
+                    <span class="tech-badge">React</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi">
+    <div class="container">
+        <h2 class="section-title">Sobre <span>mí</span></h2>
+        <p class="section-sub">Un poco de mi historia</p>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>Soy Fernando, desarrollador web con experiencia construyendo sistemas completos desde cero — desde el diseño de la base de datos hasta la interfaz de usuario.</p>
+                <p>Me especializo en PHP y Python para el backend, con conocimientos en automatización de procesos usando herramientas como n8n y Power Automate.</p>
+                <p>Me gusta resolver problemas reales con código limpio y soluciones prácticas.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-card">
+                    <div class="stat-number">3+</div>
+                    <div class="stat-label">Proyectos completados</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2+</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Tecnologías</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Ganas de aprender</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <div class="container">
+        <h2 class="section-title" style="text-align:center">¿Trabajamos <span>juntos?</span></h2>
+        <p class="section-sub" style="text-align:center">Estoy disponible para proyectos freelance y oportunidades laborales</p>
+        <div class="contact-card">
+            <h3>¡Hablemos!</h3>
+            <p>Si tienes un proyecto en mente o quieres contactarme, estoy a un mensaje de distancia.</p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/ferpinto17/" target="_blank" class="btn-primary">LinkedIn</a>
+                <a href="https://github.com/xRazy1217" target="_blank" class="btn-outline">GitHub</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>Desarrollado por <strong>Fernando Pinto Cruz</strong> — 2025</p>
+</footer>
+
+</body>
+</html>
