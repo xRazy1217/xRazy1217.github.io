@@ -3,819 +3,328 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fernando Pinto — Desarrollador Web Full Stack</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <meta name="description" content="Portafolio de Fernando Pinto, Ingeniero en Informática y Desarrollador Web Full Stack." />
+  <title>Fernando Pinto — Full Stack Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:        #080810;
-      --bg2:       #0d0d1a;
-      --bg3:       #13131f;
-      --bg4:       #1a1a2e;
-      --gold:      #c9a84c;
-      --gold2:     #e8c96d;
-      --teal:      #2dd4bf;
-      --red:       #ef4444;
-      --text:      #e8e6e1;
-      --text-soft: #8a8799;
-      --border:    rgba(201,168,76,0.12);
-      --border2:   rgba(201,168,76,0.25);
+      --bg: #07070a;
+      --surface: #0f1015;
+      --surface-2: #14161d;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --line: rgba(255,255,255,.09);
+      --accent: #a78bfa;
+      --accent-2: #7c3aed;
+      --accent-soft: rgba(167,139,250,.12);
+      --success: #4ade80;
+      --max: 1120px;
     }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(124,58,237,.10), transparent 28%),
+        radial-gradient(circle at 85% 30%, rgba(167,139,250,.07), transparent 25%),
+        var(--bg);
       color: var(--text);
-      overflow-x: hidden;
+      line-height: 1.6;
     }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    nav, main, footer, header, section, .hero { position: relative; z-index: 1; }
-    .eyebrow, .section-label, .hero-eyebrow { position: relative; }
-
-    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      padding: 1.25rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      border-bottom: 1px solid var(--border);
-      background: rgba(8,8,16,0.8);
-      backdrop-filter: blur(20px);
+      position: sticky; top: 0; z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,7,10,.78);
+      backdrop-filter: blur(18px);
     }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800; font-size: 1.1rem;
-      color: var(--gold);
-      letter-spacing: .05em;
-    }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem; color: var(--text-soft);
-      text-decoration: none; letter-spacing: .08em;
-      text-transform: uppercase;
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--gold2); }
+    .nav-inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; letter-spacing: -.04em; font-size: 1.1rem; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { color: var(--muted); font-size: .88rem; transition: .2s ease; }
+    .nav-links a:hover { color: var(--text); }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 8rem 3rem 4rem;
-      max-width: 1100px; margin: 0 auto;
-    }
-    .hero-inner { max-width: 780px; }
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.78rem; color: var(--gold);
-      letter-spacing: .15em; text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      display: flex; align-items: center; gap: .75rem;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      display: block; width: 32px; height: 1px;
-      background: var(--gold);
-    }
-    .hero h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 800; line-height: 1.0;
-      margin-bottom: 1.5rem;
-      letter-spacing: -.02em;
-    }
-    .hero h1 .name { color: var(--text); }
-    .hero h1 .role {
-      color: transparent;
-      -webkit-text-stroke: 1px var(--gold);
-    }
-    .hero-desc {
-      font-size: 1.05rem; color: var(--text-soft);
-      line-height: 1.8; max-width: 520px;
-      margin-bottom: 2.5rem;
-    }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-gold {
-      background: var(--gold);
-      color: #080810; font-weight: 700;
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem; letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .85rem 2rem; border-radius: 4px;
-      text-decoration: none;
-      transition: background .2s, transform .2s;
-    }
-    .btn-gold:hover { background: var(--gold2); transform: translateY(-2px); }
-    .btn-ghost {
-      border: 1px solid var(--border2);
-      color: var(--text-soft);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8rem; letter-spacing: .08em;
-      text-transform: uppercase;
-      padding: .85rem 2rem; border-radius: 4px;
-      text-decoration: none;
-      transition: border-color .2s, color .2s, transform .2s;
-    }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .hero { padding: 118px 0 92px; }
+    .hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 72px; align-items: end; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: var(--accent); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; margin-bottom: 20px; }
+    .eyebrow::before { content: ''; width: 30px; height: 1px; background: currentColor; }
+    h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3.3rem, 7vw, 6.6rem); line-height: .94; letter-spacing: -.06em; max-width: 900px; }
+    h1 span { color: var(--accent); }
+    .hero-copy { color: var(--muted); font-size: 1.06rem; max-width: 680px; margin: 26px 0 30px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 18px; border-radius: 10px; font-size: .9rem; font-weight: 700; border: 1px solid var(--line); transition: transform .2s ease, border-color .2s ease, background .2s ease; }
+    .btn:hover { transform: translateY(-2px); border-color: rgba(167,139,250,.45); }
+    .btn-primary { background: var(--accent); color: #100d18; border-color: transparent; }
+    .btn-primary:hover { background: #b8a2ff; }
+    .btn-ghost { background: rgba(255,255,255,.02); color: var(--text); }
 
-    .hero-stats {
-      margin-top: 4rem;
-      display: flex; gap: 3rem; flex-wrap: wrap;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-    .hero-stat-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 2.2rem; font-weight: 800;
-      color: var(--gold);
-    }
-    .hero-stat-label {
-      font-size: 0.8rem; color: var(--text-soft);
-      text-transform: uppercase; letter-spacing: .08em;
-      margin-top: .1rem;
-    }
+    .hero-card { border: 1px solid var(--line); background: linear-gradient(180deg, rgba(167,139,250,.09), rgba(255,255,255,.02)); border-radius: 18px; padding: 24px; }
+    .hero-card small { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; }
+    .hero-card h2 { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; margin: 10px 0 8px; }
+    .hero-card p { color: var(--muted); font-size: .92rem; }
+    .availability { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: #d1d5db; font-size: .85rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 16px rgba(74,222,128,.55); }
 
-    /* ── SECTIONS ── */
-    section { padding: 6rem 3rem; }
-    .container { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem; color: var(--gold);
-      letter-spacing: .15em; text-transform: uppercase;
-      display: flex; align-items: center; gap: .75rem;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-    .section-label::before {
-      content: '';
-      display: block; width: 24px; height: 1px;
-      background: var(--gold);
-    }
-    .section-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 800; line-height: 1.1;
-      margin-bottom: 3rem;
-    }
+    section { padding: 92px 0; border-top: 1px solid var(--line); }
+    .section-head { margin-bottom: 34px; }
+    .section-kicker { color: var(--accent); font-size: .74rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; }
+    .section-desc { color: var(--muted); max-width: 700px; margin-top: 10px; }
 
-    /* ── SKILLS ── */
-    #skills { background: var(--bg2); }
-    .skills-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .skill-group h4 {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.75rem; color: var(--gold);
-      letter-spacing: .12em; text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      padding-bottom: .75rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .skill-list { display: flex; flex-direction: column; gap: .6rem; }
-    .skill-item {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: .65rem 1rem;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      transition: border-color .2s;
-    }
-    .skill-item:hover { border-color: var(--border2); }
-    .skill-name-text { font-size: 0.9rem; font-weight: 500; }
-    .skill-bar-wrap { width: 80px; height: 3px; background: var(--bg4); border-radius: 2px; }
-    .skill-bar { height: 3px; border-radius: 2px; background: var(--gold); }
-    .skill-bar.teal { background: var(--teal); }
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .skill-box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+    .skill-box h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; margin-bottom: 12px; }
+    .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .tag { border: 1px solid var(--line); background: rgba(255,255,255,.025); color: #d1d5db; border-radius: 999px; padding: 6px 10px; font-size: .75rem; }
 
-    /* ── PROYECTOS ── */
-    .projects-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem; color: var(--text-soft);
-      letter-spacing: .1em; text-transform: uppercase;
-      margin-bottom: 1.25rem;
-      padding: .4rem .85rem;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      display: inline-block;
-    }
-    .projects-label.active { color: var(--teal); border-color: rgba(45,212,191,.25); }
-    .projects-label.wip { color: var(--gold); border-color: var(--border2); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 4rem;
-    }
-    .project-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.75rem;
-      transition: border-color .25s, transform .25s;
-      display: flex; flex-direction: column;
-    }
-    .project-card:hover { border-color: var(--border2); transform: translateY(-4px); }
-    .project-card.wip { border-style: dashed; }
-    .project-card.wip:hover { border-color: rgba(201,168,76,.4); }
-    .project-status {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem; letter-spacing: .1em; text-transform: uppercase;
-      padding: .25rem .7rem; border-radius: 20px;
-      display: inline-flex; align-items: center; gap: .4rem;
-      margin-bottom: 1.25rem; align-self: flex-start;
-    }
-    .project-status.live {
-      background: rgba(45,212,191,.1);
-      color: var(--teal);
-      border: 1px solid rgba(45,212,191,.2);
-    }
-    .project-status.wip {
-      background: rgba(201,168,76,.1);
-      color: var(--gold);
-      border: 1px solid rgba(201,168,76,.2);
-    }
-    .project-status::before {
-      content: '';
-      width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor;
-    }
-    .project-card h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.15rem; font-weight: 700;
-      margin-bottom: .5rem;
-    }
-    .project-card p {
-      font-size: .88rem; color: var(--text-soft);
-      line-height: 1.7; margin-bottom: 1.25rem;
-      flex: 1;
-    }
-    .project-techs {
-      display: flex; flex-wrap: wrap; gap: .4rem;
-      margin-bottom: 1.25rem;
-    }
-    .tech-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: .7rem; color: var(--text-soft);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: .2rem .55rem; border-radius: 4px;
-    }
-    .project-links { display: flex; gap: 1rem; }
-    .project-link {
-      font-family: 'DM Mono', monospace;
-      font-size: .75rem; color: var(--gold);
-      text-decoration: none; letter-spacing: .05em;
-      display: flex; align-items: center; gap: .3rem;
-      transition: color .2s;
-    }
-    .project-link:hover { color: var(--gold2); }
-    .project-link svg { width: 12px; height: 12px; }
+    .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .project { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; min-height: 280px; transition: transform .25s ease, border-color .25s ease; }
+    .project:hover { transform: translateY(-4px); border-color: rgba(167,139,250,.35); }
+    .project-top { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+    .project h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; }
+    .badge { font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); background: var(--accent-soft); padding: 6px 9px; border-radius: 999px; white-space: nowrap; }
+    .project p { color: var(--muted); font-size: .9rem; margin-bottom: 20px; }
+    .project .tags { margin-top: auto; margin-bottom: 18px; }
+    .project-link { color: var(--text); font-weight: 700; font-size: .84rem; }
+    .project-link span { color: var(--accent); }
 
-    /* ── SOBRE MI ── */
-    #sobre-mi { background: var(--bg2); }
-    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: start; }
-    .about-text p { color: var(--text-soft); margin-bottom: 1.25rem; line-height: 1.9; font-size: .95rem; }
-    .about-highlight {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--border2);
-      border-radius: 8px;
-      border-left: 3px solid var(--gold);
-    }
-    .about-highlight p { color: var(--text); margin: 0; font-size: .9rem; }
+    .experience { display: grid; grid-template-columns: 150px 1fr; gap: 28px; }
+    .exp-date { color: var(--accent); font-size: .78rem; font-weight: 700; }
+    .exp-role { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; }
+    .exp-company { color: #d1d5db; margin: 3px 0 12px; }
+    .exp-copy { color: var(--muted); max-width: 780px; }
+    .exp-list { color: var(--muted); margin: 14px 0 0 18px; }
+    .exp-list li { margin-bottom: 7px; }
 
-    /* ── CLICNEXO CARD ── */
-    .clicnexo-card {
-      margin-top: 1.5rem;
-      padding: 1.25rem 1.5rem;
-      background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(13,13,26,0.9));
-      border: 1px solid var(--border2);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      text-decoration: none;
-      transition: border-color .2s, transform .2s;
-    }
-    .clicnexo-card:hover {
-      border-color: rgba(201,168,76,0.5);
-      transform: translateY(-2px);
-    }
-    .clicnexo-card-left { display: flex; flex-direction: column; gap: .3rem; }
-    .clicnexo-card-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: .65rem; color: var(--gold);
-      letter-spacing: .12em; text-transform: uppercase;
-    }
-    .clicnexo-card-title {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700; font-size: 1rem;
-      color: var(--text);
-    }
-    .clicnexo-card-desc {
-      font-size: .82rem; color: var(--text-soft);
-      line-height: 1.5;
-    }
-    .clicnexo-card-arrow {
-      font-family: 'DM Mono', monospace;
-      font-size: .8rem; color: var(--gold);
-      flex-shrink: 0;
-    }
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .about p { color: var(--muted); margin-bottom: 16px; }
+    .about-highlight { border-left: 2px solid var(--accent); padding-left: 18px; color: #ddd6fe; }
+    .timeline { display: grid; gap: 16px; }
+    .timeline-item { display: grid; grid-template-columns: 130px 1fr; gap: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+    .timeline-item:last-child { border-bottom: 0; }
+    .timeline-date { color: var(--accent); font-size: .77rem; font-weight: 700; }
+    .timeline-title { font-weight: 700; }
+    .timeline-sub { color: var(--muted); font-size: .86rem; }
 
-    .timeline { display: flex; flex-direction: column; gap: 1.5rem; }
-    .timeline-item {
-      display: flex; gap: 1.25rem;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
-    .timeline-date {
-      font-family: 'DM Mono', monospace;
-      font-size: .72rem; color: var(--gold);
-      letter-spacing: .08em; white-space: nowrap;
-      padding-top: .2rem; min-width: 90px;
-    }
-    .timeline-title { font-size: .9rem; font-weight: 600; margin-bottom: .2rem; }
-    .timeline-sub { font-size: .8rem; color: var(--text-soft); }
+    .contact { text-align: center; padding-bottom: 110px; }
+    .contact-box { max-width: 800px; margin: 0 auto; }
+    .contact-box p { color: var(--muted); max-width: 650px; margin: 14px auto 26px; }
 
-    /* ── CONTACTO ── */
-    .contact-inner {
-      max-width: 680px; margin: 0 auto; text-align: center;
-    }
-    .contact-inner p {
-      color: var(--text-soft); margin-bottom: 2.5rem;
-      line-height: 1.8; font-size: .95rem;
-    }
-    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .8rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 2rem 3rem;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 1rem;
-      position: relative; z-index: 1;
-    }
-    footer p { font-family: 'DM Mono', monospace; font-size: .72rem; color: var(--text-soft); letter-spacing: .06em; }
-    .footer-clicnexo {
-      font-family: 'DM Mono', monospace;
-      font-size: .72rem; color: var(--text-soft);
-      letter-spacing: .06em;
-      text-decoration: none;
-      display: flex; align-items: center; gap: .5rem;
-      transition: color .2s;
-    }
-    .footer-clicnexo:hover { color: var(--gold); }
-    .footer-clicnexo span {
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    /* ── ANIMATIONS ── */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
+    @media (max-width: 850px) {
+      .hero-grid, .about { grid-template-columns: 1fr; }
+      .hero { padding-top: 84px; }
+      .hero-grid { gap: 32px; }
+      .projects, .skills-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
-      .hero { padding: 7rem 1.5rem 3rem; }
-      section { padding: 4rem 1.5rem; }
-      .skills-wrapper { grid-template-columns: 1fr; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-stats { gap: 2rem; }
-      footer { flex-direction: column; text-align: center; }
-      .clicnexo-card { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 580px) {
+      .container { width: min(var(--max), calc(100% - 28px)); }
+      section { padding: 70px 0; }
+      .hero { padding-bottom: 70px; }
+      .experience, .timeline-item { grid-template-columns: 1fr; gap: 6px; }
+      .footer-inner { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-
-<nav>
-  <div class="nav-logo">FP.</div>
-  <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#sobre-mi">Sobre mí</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-</nav>
-
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">Disponible para proyectos y oportunidades</div>
-    <h1>
-      <span class="name">Fernando<br>Pinto</span><br>
-      <span class="role">Full Stack Dev</span>
-    </h1>
-    <p class="hero-desc">Construyo sistemas completos desde la base de datos hasta la interfaz — ecommerce con pagos reales, plataformas de gestión e integraciones con IA. Basado en La Serena, Chile.</p>
-    <div class="hero-btns">
-      <a href="#proyectos" class="btn-gold">Ver proyectos</a>
-      <a href="https://www.linkedin.com/in/ferpinto17/" target="_blank" class="btn-ghost">LinkedIn →</a>
-      <a href="https://github.com/xRazy1217" target="_blank" class="btn-ghost">GitHub →</a>
+  <nav>
+    <div class="container nav-inner">
+      <a class="logo" href="#inicio">FP<span>.</span></a>
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-num">12+</div>
-        <div class="hero-stat-label">Proyectos completados</div>
+  </nav>
+
+  <main>
+    <header class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Ingeniero en Informática · Full Stack</div>
+          <h1>Hola, soy<br><span>Fernando Pinto.</span></h1>
+          <p class="hero-copy">Desarrollo aplicaciones web completas, desde la arquitectura y base de datos hasta una interfaz clara y lista para usar. Me interesa resolver problemas reales con código simple, funcional y escalable.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/ferpinto17/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/xRazy1217" target="_blank" rel="noreferrer">GitHub ↗</a>
+          </div>
+        </div>
+        <aside class="hero-card">
+          <small>Actualmente</small>
+          <h2>Buscando oportunidades como desarrollador</h2>
+          <p>Enfocado principalmente en posiciones Full Stack, Backend y desarrollo web, especialmente con PHP/Laravel, JavaScript/React y Python/Django.</p>
+          <div class="availability"><span class="dot"></span> Disponible para nuevas oportunidades</div>
+        </aside>
       </div>
-      <div>
-        <div class="hero-stat-num">3</div>
-        <div class="hero-stat-label">Ecommerce en producción</div>
+    </header>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Stack</div>
+          <h2 class="section-title">Tecnologías que utilizo</h2>
+          <p class="section-desc">Prefiero mostrar tecnologías por experiencia de uso en vez de porcentajes subjetivos.</p>
+        </div>
+        <div class="skills-grid">
+          <article class="skill-box"><h3>Backend</h3><div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">Python</span><span class="tag">Django</span><span class="tag">REST API</span><span class="tag">MVC</span></div></article>
+          <article class="skill-box"><h3>Frontend</h3><div class="tags"><span class="tag">JavaScript</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Tailwind CSS</span></div></article>
+          <article class="skill-box"><h3>Datos & Backend</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">SQL</span><span class="tag">Supabase</span><span class="tag">Pandas</span><span class="tag">Power BI</span></div></article>
+          <article class="skill-box"><h3>Automatización & Herramientas</h3><div class="tags"><span class="tag">n8n</span><span class="tag">Power Automate</span><span class="tag">Gemini AI API</span><span class="tag">Git</span><span class="tag">GitHub</span></div></article>
+        </div>
       </div>
-      <div>
-        <div class="hero-stat-num">18+</div>
-        <div class="hero-stat-label">Tecnologías</div>
+    </section>
+
+    <section id="proyectos">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Proyectos</div>
+          <h2 class="section-title">Lo que he construido</h2>
+          <p class="section-desc">Una selección de proyectos que he desarrollado o remasterizado, enfocada en mostrar experiencia real con aplicaciones web, ecommerce, PWAs y análisis de datos.</p>
+        </div>
+        <div class="projects">
+          <article class="project">
+            <div class="project-top"><h3>Mascotiendas</h3><span class="badge">Proyecto web</span></div>
+            <p>Ecommerce para tienda de mascotas con catálogo, carrito, gestión de usuarios, cupones y panel de administración. Proyecto desarrollado con Laravel y una interfaz reactiva.</p>
+            <div class="tags"><span class="tag">Laravel 11</span><span class="tag">Livewire 3</span><span class="tag">Alpine.js</span><span class="tag">Tailwind CSS</span><span class="tag">MySQL</span></div>
+            <a class="project-link" href="https://cristobalv6.sg-host.com/" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Cuidarte Spa</h3><span class="badge">Ecommerce</span></div>
+            <p>Ecommerce de productos de aromaterapia y bienestar con carrito, checkout e integración con Flow. También incluye reservas, blog, panel administrativo y herramientas de marketing.</p>
+            <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">Flow API</span><span class="tag">MVC</span></div>
+            <a class="project-link" href="https://cuidartelaserena.cl/" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Katy &amp; Woof</h3><span class="badge">Ecommerce</span></div>
+            <p>Tienda online para retratos artísticos de mascotas, con catálogo, carrito, checkout con Flow, blog, administración e integración con WhatsApp.</p>
+            <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">Flow API</span><span class="tag">MVC</span></div>
+            <a class="project-link" href="https://retratodemascotas.cl" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Asesor25</h3><span class="badge">Remasterización</span></div>
+            <p>Remasterización y mantención de una plataforma web para consultoría de PYMEs. Incluye contenido dinámico, calculadoras interactivas, generador de cotizaciones con exportación a PDF e integración con Gemini AI.</p>
+            <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">Gemini AI</span><span class="tag">MVC</span></div>
+            <a class="project-link" href="http://asesor25.cl" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Rewatch</h3><span class="badge">Proyecto propio</span></div>
+            <p>Aplicación social para compartir y descubrir películas, series, canciones, álbumes y libros con amigos. Incluye perfiles, publicaciones, feed y autenticación.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">Tailwind</span><span class="tag">React Query</span></div>
+            <a class="project-link" href="https://friends-rewatch.vercel.app" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>NeuroRehab</h3><span class="badge">PWA</span></div>
+            <p>Plataforma web orientada a ejercicios de rehabilitación del habla, con seguimiento del progreso y un panel para gestión del terapeuta.</p>
+            <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">PWA</span><span class="tag">Vercel</span></div>
+            <a class="project-link" href="https://neurorehab-five.vercel.app" target="_blank" rel="noreferrer">Ver proyecto <span>↗</span></a>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>FitSpace</h3><span class="badge">Proyecto de título</span></div>
+            <p>Plataforma de gestión para gimnasio con roles diferenciados, control de clases, asistencia, pagos y check-in mediante códigos QR.</p>
+            <div class="tags"><span class="tag">Django</span><span class="tag">Python</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">QR API</span></div>
+            <span class="project-link" style="color:var(--muted)">Repositorio privado</span>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Análisis de Datos — Retail</h3><span class="badge">Consultoría</span></div>
+            <p>Análisis de ventas para apoyar decisiones de producto y promoción. Incluyó limpieza de datos, transformación, definición de KPIs y dashboard interactivo.</p>
+            <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">SQL</span><span class="tag">Power BI</span></div>
+            <span class="project-link" style="color:var(--muted)">Proyecto privado</span>
+          </article>
+
+          <article class="project">
+            <div class="project-top"><h3>Reserva de Canchas</h3><span class="badge">Completado</span></div>
+            <p>Sistema de reservas con calendario de disponibilidad, gestión de horarios, confirmaciones y panel de administración.</p>
+            <div class="tags"><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span></div>
+            <a class="project-link" href="https://github.com/xRazy1217" target="_blank" rel="noreferrer">Ver en GitHub <span>↗</span></a>
+          </article>
+
+
+        </div>
       </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Experiencia</div>
+          <h2 class="section-title">Experiencia profesional</h2>
+        </div>
+        <div class="experience">
+          <div class="exp-date">Mar — May 2026</div>
+          <div>
+            <div class="exp-role">Practicante — Desarrollo Web</div>
+            <div class="exp-company">Asesor25</div>
+            <p class="exp-copy">Desarrollo y mantención de plataforma web en PHP/MVC para una consultoría. Trabajo enfocado en resolución de incidencias, mejoras funcionales y optimización de código y consultas.</p>
+            <ul class="exp-list">
+              <li>Desarrollo y mantenimiento de funcionalidades en producción.</li>
+              <li>Generador de cotizaciones con exportación a PDF y calculadoras interactivas.</li>
+              <li>Integración con Gemini AI y optimización de consultas SQL.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Sobre mí</div>
+          <h2 class="section-title">Ingeniero, desarrollador y creador de soluciones.</h2>
+        </div>
+        <div class="about">
+          <div>
+            <p>Soy Fernando Pinto, Ingeniero en Informática titulado y desarrollador web enfocado en construir soluciones completas. Me gusta entender primero el problema y luego elegir la tecnología que realmente aporta.</p>
+            <p>He trabajado en desarrollo Full Stack, backend, análisis de datos, automatización y aplicaciones con IA. También tengo experiencia colaborando directamente con personas y clientes para convertir necesidades concretas en funcionalidades reales.</p>
+            <p class="about-highlight">Actualmente busco seguir creciendo en un equipo donde pueda aportar desde el desarrollo y, al mismo tiempo, seguir aprendiendo buenas prácticas de ingeniería.</p>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item"><div class="timeline-date">2026</div><div><div class="timeline-title">Desarrollo Web — Asesor25</div><div class="timeline-sub">Práctica profesional · PHP · MVC · SQL · IA</div></div></div>
+            <div class="timeline-item"><div class="timeline-date">2025–2026</div><div><div class="timeline-title">Análisis de Datos — Retail</div><div class="timeline-sub">Python · Pandas · SQL · Power BI</div></div></div>
+            <div class="timeline-item"><div class="timeline-date">2025</div><div><div class="timeline-title">FitSpace — Proyecto de título</div><div class="timeline-sub">Django · MySQL · gestión multi-rol</div></div></div>
+            <div class="timeline-item"><div class="timeline-date">2022–2025</div><div><div class="timeline-title">Ingeniería en Informática</div><div class="timeline-sub">INACAP · La Serena · Titulado</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact">
+      <div class="container contact-box">
+        <div class="section-kicker">Contacto</div>
+        <h2 class="section-title">¿Hablamos?</h2>
+        <p>Estoy interesado en oportunidades laborales, proyectos freelance y colaboraciones relacionadas con desarrollo web y software.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn btn-primary" href="mailto:fernandresp12@gmail.com">fernandresp12@gmail.com</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/ferpinto17/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a class="btn btn-ghost" href="https://github.com/xRazy1217" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>Fernando Pinto · La Serena, Chile</span>
+      <span>© 2026</span>
     </div>
-  </div>
-</div>
-
-<section id="skills">
-  <div class="container reveal">
-    <div class="section-label">Habilidades técnicas</div>
-    <h2 class="section-title">Stack & Tecnologías</h2>
-    <div class="skills-wrapper">
-      <div class="skill-group">
-        <h4>Backend</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name-text">PHP</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Laravel</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Python / Django</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">APIs REST</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Livewire</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div></div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Frontend</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name-text">JavaScript</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:80%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">TypeScript</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:65%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Next.js / React</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:65%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Tailwind CSS</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:90%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Alpine.js</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:70%"></div></div></div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Bases de datos & Cloud</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name-text">MySQL</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Supabase</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Google Cloud</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:55%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">AWS</span><div class="skill-bar-wrap"><div class="skill-bar" style="width:50%"></div></div></div>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4>Datos & Automatización</h4>
-        <div class="skill-list">
-          <div class="skill-item"><span class="skill-name-text">Power BI</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:70%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Python / Pandas</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:70%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">n8n</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:65%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Power Automate</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:60%"></div></div></div>
-          <div class="skill-item"><span class="skill-name-text">Gemini AI API</span><div class="skill-bar-wrap"><div class="skill-bar teal" style="width:60%"></div></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="proyectos">
-  <div class="container">
-    <div class="section-label">Trabajo</div>
-    <h2 class="section-title">Proyectos</h2>
-
-    <div class="projects-label active reveal">En producción</div>
-    <div class="projects-grid reveal">
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>Mascotiendas</h3>
-        <p>Ecommerce moderno para tienda de mascotas con 3 sucursales en La Serena y Coquimbo. Carrito reactivo, checkout con delivery o retiro, cupones de descuento, sistema de usuarios y panel admin completo.</p>
-        <div class="project-techs">
-          <span class="tech-tag">Laravel 11</span>
-          <span class="tech-tag">Livewire 3</span>
-          <span class="tech-tag">Alpine.js</span>
-          <span class="tech-tag">Tailwind CSS</span>
-          <span class="tech-tag">MySQL</span>
-        </div>
-        <div class="project-links">
-          <a href="https://cristobalv6.sg-host.com/" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>Cuidarte Spa</h3>
-        <p>Ecommerce de aromaterapia y bienestar con carrito, checkout e integración real con pasarela de pagos Flow. Sistema de reservas online, panel admin, blog y herramientas de marketing: cupones y modales de captación de leads.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Flow API</span>
-          <span class="tech-tag">MVC</span>
-        </div>
-        <div class="project-links">
-          <a href="https://cuidartelaserena.cl/" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>Katy & Woof</h3>
-        <p>Tienda online de retratos artísticos de mascotas. Catálogo, carrito, checkout con Flow, blog, panel admin e integración WhatsApp para contacto directo. Herramientas de marketing: modales de descuento y captación de leads.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Flow API</span>
-        </div>
-        <div class="project-links">
-          <a href="https://retratodemascotas.cl" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>Asesor25</h3>
-        <p>Reconstrucción completa desde cero de plataforma web para consultoría de PYMEs. Blog dinámico, calculadoras interactivas, generador de cotizaciones con exportación a PDF e integración con Gemini AI.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Gemini AI</span>
-          <span class="tech-tag">MVC</span>
-        </div>
-        <div class="project-links">
-          <a href="http://asesor25.cl" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>Rewatch</h3>
-        <p>Red social de entretenimiento para compartir y descubrir películas, series, canciones, álbumes y libros con amigos. Feed en tiempo real con scroll infinito, perfiles de usuario, sistema de publicaciones y autenticación completa.</p>
-        <div class="project-techs">
-          <span class="tech-tag">Next.js 15</span>
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">Supabase</span>
-          <span class="tech-tag">Tailwind CSS</span>
-          <span class="tech-tag">React Query</span>
-          <span class="tech-tag">Zustand</span>
-        </div>
-        <div class="project-links">
-          <a href="https://friends-rewatch.vercel.app" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">En producción</span>
-        <h3>NeuroRehab</h3>
-        <p>PWA de tele-rehabilitación post-ACV desarrollada por encargo de una fonoaudióloga. Permite a pacientes realizar ejercicios del habla de forma remota con seguimiento de progreso y panel de gestión para el terapeuta.</p>
-        <div class="project-techs">
-          <span class="tech-tag">Next.js 15</span>
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">Supabase</span>
-          <span class="tech-tag">Tailwind CSS</span>
-          <span class="tech-tag">PWA</span>
-          <span class="tech-tag">Vercel</span>
-        </div>
-        <div class="project-links">
-          <a href="https://neurorehab-five.vercel.app" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver sitio
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">Proyecto de título</span>
-        <h3>FitSpace</h3>
-        <p>Plataforma de gestión para gimnasio con 3 roles diferenciados: administrador, profesor y alumno. Control de clases, asistencia, pagos y check-in mediante códigos QR generados dinámicamente.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">JavaScript</span>
-          <span class="tech-tag">Django</span>
-          <span class="tech-tag">QR API</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link" style="color:var(--text-soft); cursor:default;">Repositorio privado</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">Consultoría</span>
-        <h3>Análisis de Datos — Retail</h3>
-        <p>Análisis de ventas para tienda retail con el objetivo de apoyar decisiones estratégicas de producto y promoción. Limpieza y transformación de datos, construcción de KPIs y dashboard interactivo entregado directamente al equipo de gestión.</p>
-        <div class="project-techs">
-          <span class="tech-tag">Python</span>
-          <span class="tech-tag">Pandas</span>
-          <span class="tech-tag">Power BI</span>
-          <span class="tech-tag">SQL</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="project-link" style="color:var(--text-soft); cursor:default;">Proyecto privado</a>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <span class="project-status live">Completado</span>
-        <h3>Reserva de Canchas</h3>
-        <p>Sistema de reserva de canchas de fútbol con calendario de disponibilidad en tiempo real, gestión de horarios y confirmación de reservas. Interfaz intuitiva para usuarios y panel de administración para gestores.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">JavaScript</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/xRazy1217" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver en GitHub
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="projects-label wip reveal">En desarrollo</div>
-    <div class="projects-grid reveal">
-
-      <div class="project-card wip">
-        <span class="project-status wip">En desarrollo</span>
-        <h3>Radio América TV</h3>
-        <p>Multiplataforma informativa con radio 106.7 FM y TV HD en vivo. Sistema de noticias, gestión de conductores y PWA instalable. Proyecto pausado, retomando próximamente.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">PWA</span>
-          <span class="tech-tag">Vite</span>
-        </div>
-        <div class="project-links">
-          <a href="https://desarrollo.radioamerica.cl/" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver demo
-          </a>
-        </div>
-      </div>
-
-      <div class="project-card wip">
-        <span class="project-status wip">En desarrollo</span>
-        <h3>Puerto Espacial</h3>
-        <p>Landing page para restaurante temático espacial con animaciones en canvas (estrellas, naves, nebulosas), diseño oscuro inmersivo y sistema de reservas.</p>
-        <div class="project-techs">
-          <span class="tech-tag">PHP</span>
-          <span class="tech-tag">Bootstrap 5</span>
-          <span class="tech-tag">Canvas API</span>
-          <span class="tech-tag">AOS</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/xRazy1217" target="_blank" class="project-link">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-            Ver en GitHub
-          </a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="sobre-mi">
-  <div class="container reveal">
-    <div class="section-label">Sobre mí</div>
-    <h2 class="section-title">Un poco de<br>mi historia</h2>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Soy Fernando, desarrollador web full stack egresado de Ingeniería en Informática en INACAP La Serena. Me especializo en construir sistemas completos y funcionales — desde el modelado de la base de datos hasta la interfaz final que usa el cliente.</p>
-        <p>He desarrollado ecommerce con pagos reales, plataformas de gestión con roles diferenciados, dashboards de datos para toma de decisiones y herramientas de automatización con IA. Todos mis proyectos terminan en producción, no en un repositorio sin usar.</p>
-        <p>Más allá del código, tengo experiencia trabajando directamente con clientes, entendiendo sus necesidades y traduciéndolas en soluciones técnicas concretas. Me adapto rápido a nuevos entornos y tecnologías.</p>
-
-        <div class="about-highlight">
-          <p>Terminé mi práctica profesional en Asesor25, trabajando en desarrollo y mantención de sistemas web en producción.</p>
-        </div>
-
-        <a href="https://clicnexo-next.vercel.app/" target="_blank" class="clicnexo-card">
-          <div class="clicnexo-card-left">
-            <span class="clicnexo-card-eyebrow">Proyecto propio · Estudio digital</span>
-            <span class="clicnexo-card-title">ClicNexo</span>
-            <span class="clicnexo-card-desc">Estudio digital para pymes que construí y opero — landing pages, ecommerce y automatizaciones para negocios locales.</span>
-          </div>
-          <span class="clicnexo-card-arrow">→</span>
-        </a>
-      </div>
-
-      <div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <div class="timeline-date">Jun 2026</div>
-            <div>
-              <div class="timeline-title">NeuroRehab & Rewatch</div>
-              <div class="timeline-sub">PWA tele-rehabilitación · Red social entretenimiento</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Mar–May 2026</div>
-            <div>
-              <div class="timeline-title">Practicante — Asesor25</div>
-              <div class="timeline-sub">Desarrollo web en producción · PHP</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Abr 2026</div>
-            <div>
-              <div class="timeline-title">Mascotiendas — Laravel</div>
-              <div class="timeline-sub">Ecommerce más avanzado desarrollado</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Mar 2026</div>
-            <div>
-              <div class="timeline-title">Cuidarte Spa & Katy & Woof</div>
-              <div class="timeline-sub">Ecommerce con pagos Flow en producción</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Nov 2025–Ene 2026</div>
-            <div>
-              <div class="timeline-title">Análisis de datos — Consultoría Retail</div>
-              <div class="timeline-sub">Dashboard Power BI · Python · SQL</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">Jul–Dic 2025</div>
-            <div>
-              <div class="timeline-title">FitSpace — Proyecto de título</div>
-              <div class="timeline-sub">Plataforma de gestión multi-rol</div>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="timeline-date">2022–2025</div>
-            <div>
-              <div class="timeline-title">INACAP La Serena</div>
-              <div class="timeline-sub">Ingeniería en Informática · Egresado Dic 2025</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contacto">
-  <div class="container reveal">
-    <div class="section-label">Contacto</div>
-    <div class="contact-inner">
-      <h2 class="section-title" style="text-align:center">¿Trabajamos<br>juntos?</h2>
-      <p>Estoy disponible para proyectos freelance, consultoría y oportunidades laborales. Si tienes un sistema que construir o mejorar, hablemos.</p>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/ferpinto17/" target="_blank" class="btn-gold">LinkedIn</a>
-        <a href="https://github.com/xRazy1217" target="_blank" class="btn-ghost">GitHub</a>
-        <a href="mailto:fernandresp12@gmail.com" class="btn-ghost">Email</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>Fernando Pinto — La Serena, Chile</p>
-  <a href="https://clicnexo-next.vercel.app/" target="_blank" class="footer-clicnexo">
-    También en <span>ClicNexo →</span>
-  </a>
-</footer>
-
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  reveals.forEach(r => observer.observe(r));
-</script>
-
+  </footer>
 </body>
 </html>
